@@ -10,9 +10,14 @@ export default function Intro(){
 
   useEffect(() => {
     const sessionCookie = Cookies.get('survey_session');
+    const completedSurvey = localStorage.getItem('survey_result');
+    
     if(sessionCookie){
       setHasActiveSurvey(true);
       nav('/survey');
+    } else if(completedSurvey){
+      setHasActiveSurvey(true);
+      nav('/end');
     }
   }, [nav]);
 

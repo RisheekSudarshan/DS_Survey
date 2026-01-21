@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Cookies from "js-cookie";
 import { saveProgress, loadProgress, isFirebaseInitialized, cloudPing, logAnswer } from "../firebase";
@@ -377,15 +377,12 @@ export default function Survey(){
               ) : q.type === 'trap' ? (
                 <div className="space-y-2 sm:space-y-3">
                   {q.trapAction === 'redirect' ? (
-                    <button onClick={()=>{ 
-                      select(q.options[0]); 
-                      if (q.id === 8) nav('/trap/redirect/8');
-                      else if (q.id === 14) nav('/trap/redirect/14');
-                      else if (q.id === 16) nav('/trap/redirect/16');
-                      else nav(`/trap/redirect?trapId=${q.id}`);
-                    }} className="text-sky-400 hover:text-sky-300 underline hover:no-underline text-left text-sm sm:text-base break-words">
+                    <Link to={q.id === 8 ? '/trap/redirect/8' : q.id === 14 ? '/trap/redirect/14' : q.id === 16 ? '/trap/redirect/16' : `/trap/redirect?trapId=${q.id}`}
+                      onClick={() => select(q.options[0])}
+                      className="text-sky-400 hover:text-sky-300 underline hover:no-underline text-left text-sm sm:text-base break-words inline-block"
+                    >
                       → {q.id === 16 ? 'Click fast!' : 'Click here to view more'}
-                    </button>
+                    </Link>
                   ) : q.trapAction === 'permission' ? (
                     <div className="space-y-3">
                       <div className="text-center p-4 text-sm sm:text-base opacity-70">
@@ -402,9 +399,12 @@ export default function Survey(){
                       {q.text.replace('👉 ', '')}
                     </button>
                   ) : q.trapAction === 'link' ? (
-                    <button onClick={()=>{ select(q.options[1]); nav('/trap/link/12'); }} className="text-sky-400 hover:text-sky-300 underline hover:no-underline text-left text-sm sm:text-base break-words">
+                    <Link to="/trap/link/12"
+                      onClick={() => select(q.options[1])}
+                      className="text-sky-400 hover:text-sky-300 underline hover:no-underline text-left text-sm sm:text-base break-words inline-block"
+                    >
                       → Click here to proceed
-                    </button>
+                    </Link>
                   ) : q.trapAction === 'download' ? (
                     <button onClick={()=>{ 
                       select(q.options[0]); 

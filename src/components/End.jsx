@@ -77,30 +77,6 @@ export default function End(){
           <p>Trap links clicked: <b className="text-emerald-300">{traps}</b></p>
         </div>
 
-        {Object.keys(questionTiming).length > 0 && (
-          <div className="mt-6 p-4 bg-black/30 rounded-lg border border-emerald-500/30">
-            <button
-              onClick={() => setExpandTiming(!expandTiming)}
-              className="w-full flex items-center justify-between text-left font-semibold text-emerald-300 hover:text-emerald-200"
-            >
-              <span>⏱️ Time per Question</span>
-              <span className="text-xs">{expandTiming ? '▼' : '▶'}</span>
-            </button>
-            {expandTiming && (
-              <div className="mt-3 max-h-64 overflow-y-auto space-y-1 text-xs text-emerald-200">
-                {Object.entries(questionTiming)
-                  .sort(([idA], [idB]) => parseInt(idA) - parseInt(idB))
-                  .map(([qId, seconds]) => (
-                    <div key={qId} className="flex justify-between py-1 px-2 bg-white/5 rounded">
-                      <span>Q{parseInt(qId) + 1}:</span>
-                      <span className="font-mono">{seconds}s</span>
-                    </div>
-                  ))}
-              </div>
-            )}
-          </div>
-        )}
-
         <p className="mt-6 sm:mt-8 text-xs sm:text-sm text-gray-200">
           Some optional links were intentionally placed to study online decision-making habits.<br/>
           No data was collected from these links. The purpose is awareness and education.

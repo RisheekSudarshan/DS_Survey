@@ -442,12 +442,17 @@ export default function Survey(){
               )}
             </div>
 
-            <div className="mt-4 sm:mt-6 flex justify-end">
+            <div className={`mt-4 sm:mt-6 flex ${(q.type === 'trap' && (q.trapAction === 'redirect' || q.trapAction === 'link')) ? 'justify-between' : 'justify-end'} items-center`}>
               <button
                 onClick={next}
                 disabled={q.type !== 'trap' && !answered(step)}
-                className="px-4 sm:px-6 py-2 bg-sky-500 hover:bg-sky-600 rounded text-sm sm:text-base"
+                className="px-4 sm:px-6 py-2 bg-sky-500 hover:bg-sky-600 rounded text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
               >Next</button>
+              {q.type === 'trap' && (q.trapAction === 'redirect' || q.trapAction === 'link') && (
+                <div className="text-xs text-gray-400">
+                  Or use the option above →
+                </div>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>

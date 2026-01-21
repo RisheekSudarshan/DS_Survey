@@ -36,6 +36,22 @@ export async function cloudPing(sessionId){
   return snap.exists() ? snap.data() : null;
 }
 
+export async function logAnswer(sessionId, questionId, answer, trapAction = null){
+  if(!db) return Promise.resolve();
+  const ref = doc(db, 'sessions', sessionId);
+  const timestamp = new Date().toISOString();
+  const logEntry = {
+    answer: answer,
+    submittedAt: timestamp,
+    trapAction: trapAction
+  };
+  // Use question ID as key to avoid overwriting
+  const fieldKey = `log_q${questionId}`;
+  const payload = {};
+  payload[fieldKey] = logEntry;
+  return setDoc(ref, payload, { merge: true });
+}
+
 export async function saveProgress(sessionId, data){
   if(!db) return Promise.resolve();
   const ref = doc(db, 'sessions', sessionId);

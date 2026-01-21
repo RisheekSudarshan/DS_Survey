@@ -49,6 +49,8 @@ const questions = [
   { id:12, text: "Please read carefully before answering this question. Do NOT click this link", type: "trap", options:["Did not click","Clicked anyway"], trap:true, trapAction: "link" },
 
   { id:24, text: "Are you in Computer Science or a related domain?", type: "mcq", options:["Yes","No"] },
+
+  { id:25, text: "Which device did you use to complete this survey?", type: "mcq", options:["Mobile","Laptop","Tablet","Other"] },
 ];
 
 function genId(){

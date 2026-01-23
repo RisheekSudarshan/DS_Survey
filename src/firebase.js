@@ -1,6 +1,6 @@
 // Minimal Firebase helper (Firestore) — fill firebaseConfig with your project values
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc, collection, getDocs } from "firebase/firestore";
 
 // TODO: Replace the below config with your Firebase project's config
 const firebaseConfig = {
@@ -65,7 +65,18 @@ export async function loadProgress(sessionId){
   return snap.exists() ? snap.data() : null;
 }
 
+export async function getAllSessions(){
+  if(!db) return [];
+  const sessionsCollection = collection(db, 'sessions');
+  const snap = await getDocs(sessionsCollection);
+  const sessions = [];
+  snap.forEach(doc => {
+    sessions.push({ id: doc.id, ...doc.data() });
+  });
+  return sessions;
+}
+
 export default {
-  saveProgress, loadProgress
+  saveProgress, loadProgress, getAllSessions
 };
 

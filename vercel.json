@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    {
-      "source": "/survey",
-      "destination": "https://risheek.co.in",
-      "permanent": true
-    }
-  ]
-}

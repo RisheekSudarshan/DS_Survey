@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/SURVEY",
+      "destination": "https://risheek.co.in",
+      "permanent": true
+    }
+  ]
+}

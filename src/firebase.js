@@ -2,15 +2,15 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, getDoc, collection, getDocs } from "firebase/firestore";
 
-// TODO: Replace the below config with your Firebase project's config
+// Load Firebase config from environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyBccZ379gH06e23WwRfv3Lly7E49FI_Uxk",
-  authDomain: "ds-survey-40808.firebaseapp.com",
-  projectId: "ds-survey-40808",
-  storageBucket: "ds-survey-40808.firebasestorage.app",
-  messagingSenderId: "555453514367",
-  appId: "1:555453514367:web:5d913637cd481d77dc754a",
-  measurementId: "G-KRTK8EFY13"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 let db = null;
@@ -79,4 +79,3 @@ export async function getAllSessions(){
 export default {
   saveProgress, loadProgress, getAllSessions
 };
-
